@@ -3,7 +3,7 @@ const express = require('express')
 const books = express.Router()
 const Book = require('../models/book.js')
 
-// SEED 
+// Seed
 books.get('/seed', (req, res) => {
     Book.insertMany([{
         "title": "The Shinobi Initiative",
@@ -41,7 +41,7 @@ books.get('/seed', (req, res) => {
         }))
 })
 
-// INDEX
+// Index route
 books.get('/', (req, res) => {
     Book.find()
         .then(foundBooks => {
@@ -54,7 +54,7 @@ books.get('/', (req, res) => {
         })
 })
 
-// SHOW
+// Show route
 books.get('/:id', (req, res) => {
     Book.findById(req.params.id)
         .then(foundBook => {
@@ -67,7 +67,7 @@ books.get('/:id', (req, res) => {
         })
 })
 
-// UPDATE 
+// Update route
 books.put('/:id', (req, res) => {
     Book.findByIdAndUpdate(req.params.id, req.body)
         .then(updatedBook => {
@@ -81,7 +81,7 @@ books.put('/:id', (req, res) => {
         })
 })
 
-// DELETE 
+// Delete route
 books.delete('/:id', (req, res) => {
     Book.findByIdAndDelete(req.params.id)
         .then(deletedBook => {
@@ -96,7 +96,7 @@ books.delete('/:id', (req, res) => {
         })
 })
 
-// CREATE 
+// Create route
 books.post('/', (req, res) => {
     Book.create(req.body)
         .then(createdBook => {
@@ -109,5 +109,4 @@ books.post('/', (req, res) => {
         })
 })
 
-// EXPORT
 module.exports = books
